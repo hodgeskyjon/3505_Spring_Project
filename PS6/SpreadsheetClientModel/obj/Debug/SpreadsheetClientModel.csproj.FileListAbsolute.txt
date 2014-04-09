@@ -1,0 +1,7 @@
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.dll
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.pdb
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\bin\Debug\PS7.dll
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\bin\Debug\PS7.pdb
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.csprojResolveAssemblyReference.cache
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.dll
+C:\Users\Christy\Documents\Visual Studio 2012\Projects\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.pdb

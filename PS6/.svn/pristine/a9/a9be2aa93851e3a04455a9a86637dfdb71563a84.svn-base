@@ -1,0 +1,96 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using SS;
+
+namespace SpreadsheetGUI
+{
+    public partial class Form1 : Form
+    {
+        private SS.Spreadsheet ss;
+
+        public Form1()
+        {
+            InitializeComponent();
+            ss = new SS.Spreadsheet();
+            spreadsheetPanel1.SelectionChanged += displaySelection;
+            spreadsheetPanel1.SetSelection(0, 0);
+            selectedCell.Text = "A1";
+        }
+
+        private void displaySelection(SS.SpreadsheetPanel sender)
+        {
+            int row, col;
+            string value;
+
+            sender.GetSelection(out col, out row);
+            sender.GetValue(col, row, out value);
+            Char c = (Char)(65 + col);
+            selectedCell.Text = c.ToString() + (row + 1).ToString();
+            selectedValue.Text = (string)ss.GetCellContents(c.ToString()+(row+1).ToString());
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // Opens a new form with a new spreadsheet panel
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpreadsheetApplicationContext.getAppContext().RunForm(new Form1());
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    ss = new Spreadsheet(file, s => true, s => s, "ps6");
+                }
+                catch (IOException)
+                {
+                }
+            }
+            foreach(string k in ss.GetNamesOfAllNonemptyCells())
+            {
+                char[] splitName = k.ToCharArray();
+                spreadsheetPanel1.SetValue(splitName[0], splitName[1], (string)ss.GetCellValue(k));
+            }
+            MessageBox.Show("Open command executed");
+        }
+
+        private void spreadsheetPanel1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //Closes the current window when selected from the menu
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            string name = saveFileDialog1.FileName;
+            ss.Save(name);
+        }
+
+    }
+}
