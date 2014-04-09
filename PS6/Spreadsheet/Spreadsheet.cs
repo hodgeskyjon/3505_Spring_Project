@@ -382,12 +382,13 @@ namespace SS
         /// <returns></returns>
         public override ISet<string> SetContentsOfCell(string name, string content)
         {
-            name = removeNewLines(name);
-            content = removeNewLines(content);
-            if(content == null)
+            if (content == null)
                 throw new ArgumentNullException();
             if (name == null || !IsValid(name))
                 throw new InvalidNameException();
+            name = removeNewLines(name);
+            content = removeNewLines(content);
+           
             name = Normalize(name);
             if(IsValid(name))
             {
@@ -397,7 +398,7 @@ namespace SS
 
                 if (isDouble)
                     cellsToRecalc = (HashSet<string>)SetCellContents(name, doubleValue);
-                else if (Regex.IsMatch(content, @"^\W"))
+                else if (Regex.IsMatch(content, @"[\+\-\*\/=]"))
                 {
                     char[] splitFormula = content.ToCharArray();
                     string newFormula = "";
@@ -431,6 +432,16 @@ namespace SS
         private double lookup(string variable)
         {
             object cellValue = GetCellValue(variable);
+            try
+            {
+                double doubleValue = 0.0;
+                bool isDouble = double.TryParse(cellValue.ToString(), out doubleValue);
+                cellValue = doubleValue;
+            }
+            catch
+            {
+                cellValue = 0;
+            }
             return (double)cellValue;
         }
 

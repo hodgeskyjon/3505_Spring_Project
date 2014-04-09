@@ -61,9 +61,10 @@
             // 
             this.spreadsheetPanel1.AutoSize = true;
             this.spreadsheetPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.spreadsheetPanel1.Location = new System.Drawing.Point(0, 72);
+            this.spreadsheetPanel1.Location = new System.Drawing.Point(0, 58);
+            this.spreadsheetPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.spreadsheetPanel1.Name = "spreadsheetPanel1";
-            this.spreadsheetPanel1.Size = new System.Drawing.Size(782, 709);
+            this.spreadsheetPanel1.Size = new System.Drawing.Size(586, 576);
             this.spreadsheetPanel1.TabIndex = 0;
             this.spreadsheetPanel1.SelectionChanged += new SS.SelectionChangedHandler(this.spreadsheetPanel1_SelectionChanged);
             // 
@@ -75,7 +76,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(782, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(586, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -90,7 +92,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -99,7 +101,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -109,14 +111,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -124,24 +126,24 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(167, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -152,25 +154,25 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.contentsToolStripMenuItem.Text = "Get Help";
             this.contentsToolStripMenuItem.Click += new System.EventHandler(this.contentsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(117, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -184,16 +186,18 @@
             this.panel1.Controls.Add(this.cellValueLabel);
             this.panel1.Controls.Add(this.selectedCell);
             this.panel1.Controls.Add(this.cellNameLabel);
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(782, 38);
+            this.panel1.Size = new System.Drawing.Size(586, 31);
             this.panel1.TabIndex = 2;
             // 
             // EvaluateButton
             // 
-            this.EvaluateButton.Location = new System.Drawing.Point(673, 4);
+            this.EvaluateButton.Location = new System.Drawing.Point(505, 3);
+            this.EvaluateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EvaluateButton.Name = "EvaluateButton";
-            this.EvaluateButton.Size = new System.Drawing.Size(75, 23);
+            this.EvaluateButton.Size = new System.Drawing.Size(70, 19);
             this.EvaluateButton.TabIndex = 6;
             this.EvaluateButton.Text = "Evaluate";
             this.EvaluateButton.UseVisualStyleBackColor = true;
@@ -201,53 +205,59 @@
             // 
             // editCell
             // 
-            this.editCell.Location = new System.Drawing.Point(506, 6);
+            this.editCell.Location = new System.Drawing.Point(380, 5);
+            this.editCell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.editCell.Name = "editCell";
-            this.editCell.Size = new System.Drawing.Size(161, 22);
+            this.editCell.Size = new System.Drawing.Size(122, 20);
             this.editCell.TabIndex = 5;
             this.editCell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.editCell_KeyPress);
             // 
             // cellContentsLabel
             // 
             this.cellContentsLabel.AutoSize = true;
-            this.cellContentsLabel.Location = new System.Drawing.Point(377, 10);
+            this.cellContentsLabel.Location = new System.Drawing.Point(283, 8);
+            this.cellContentsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cellContentsLabel.Name = "cellContentsLabel";
-            this.cellContentsLabel.Size = new System.Drawing.Size(123, 17);
+            this.cellContentsLabel.Size = new System.Drawing.Size(93, 13);
             this.cellContentsLabel.TabIndex = 4;
             this.cellContentsLabel.Text = "Edit Cell Contents:";
             // 
             // selectedValue
             // 
             this.selectedValue.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.selectedValue.Location = new System.Drawing.Point(243, 7);
+            this.selectedValue.Location = new System.Drawing.Point(192, 6);
+            this.selectedValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectedValue.Name = "selectedValue";
             this.selectedValue.ReadOnly = true;
-            this.selectedValue.Size = new System.Drawing.Size(119, 22);
+            this.selectedValue.Size = new System.Drawing.Size(80, 20);
             this.selectedValue.TabIndex = 3;
             // 
             // cellValueLabel
             // 
-            this.cellValueLabel.Location = new System.Drawing.Point(162, 9);
+            this.cellValueLabel.Location = new System.Drawing.Point(122, 7);
+            this.cellValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cellValueLabel.Name = "cellValueLabel";
-            this.cellValueLabel.Size = new System.Drawing.Size(75, 23);
+            this.cellValueLabel.Size = new System.Drawing.Size(66, 19);
             this.cellValueLabel.TabIndex = 2;
             this.cellValueLabel.Text = "Cell Value:";
             // 
             // selectedCell
             // 
             this.selectedCell.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.selectedCell.Location = new System.Drawing.Point(100, 7);
+            this.selectedCell.Location = new System.Drawing.Point(75, 6);
+            this.selectedCell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectedCell.Name = "selectedCell";
             this.selectedCell.ReadOnly = true;
-            this.selectedCell.Size = new System.Drawing.Size(56, 22);
+            this.selectedCell.Size = new System.Drawing.Size(43, 20);
             this.selectedCell.TabIndex = 1;
             // 
             // cellNameLabel
             // 
             this.cellNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cellNameLabel.Location = new System.Drawing.Point(3, 10);
+            this.cellNameLabel.Location = new System.Drawing.Point(2, 8);
+            this.cellNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cellNameLabel.Name = "cellNameLabel";
-            this.cellNameLabel.Size = new System.Drawing.Size(99, 28);
+            this.cellNameLabel.Size = new System.Drawing.Size(74, 23);
             this.cellNameLabel.TabIndex = 0;
             this.cellNameLabel.Text = "Selected Cell:";
             // 
@@ -264,13 +274,14 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 780);
+            this.ClientSize = new System.Drawing.Size(586, 634);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.spreadsheetPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
