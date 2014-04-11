@@ -9,6 +9,8 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <set>
+#include <list>
 
 namespace cs3505
 {
@@ -32,13 +34,16 @@ namespace cs3505
 		void remove_dependency(std::string, std::string);  // removes a dependency from the graph
 		void replace_dependents(std::string, std::vector<std::string>);  // replaces dependents
         void replace_dependees(std::string, std::vector<std::string>);  // replaces dependees
+		std::list<std::string> get_cells_to_recalc(std::string);
 		
 	private:
 		
 		std::multimap<std::string, std::string> set_of_dependents; // holds the set of dependent/dependees
-		
-		
+		void visit(std::string start, std::string name, std::set<std::string> visited, std::list<std::string> changed);
+	
+	
     };
     
 }
 #endif
+

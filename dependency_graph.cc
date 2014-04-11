@@ -6,6 +6,8 @@
 #include <iterator>
 #include <vector>
 #include "dependency_graph.h"
+#include <set>
+#include <list>
 
 namespace cs3505
 {
@@ -138,21 +140,64 @@ namespace cs3505
 		std::vector<std::string> dependee_list;
 		
 		for(it = set_of_dependents.begin(); it!=set_of_dependents.end(); ++it)
-		{
-			if(it->second == cell)
-				dependee_list.push_back(it->first);
+		{	
+		  if(it->second == cell)
+			  dependee_list.push_back(it->first);
 		}
 		
 		for(int i=0; i<dependee_list.size(); i++)
 		{
-			remove_dependency(dependee_list[i], cell);
+		  remove_dependency(dependee_list[i], cell);
 		}
 		
 		for(int i=0; i<list.size(); i++)
 		{
-			add_dependency(list[i], cell);
+		  add_dependency(list[i], cell);
 		}
-	}	
+	}
+
+
+  //ported 
+  std::list<std::string> dependency_graph::get_cells_to_recalc(std::string name)
+  {
+    std::list<std::string> changed;
+    std::set<std::string> visited;
+    std::set<std::string> names;
+    std::set<std::string>::iterator it;
+    std::list<std::string>::iterator i;
+    
+    names.insert(name);
+    
+    for (it = names.begin(); it != names.end(); ++it)
+      {
+	if (visited.find(*it) != visited.end() == false)
+	  {
+	    visit(*it, *it, visited, changed);
+	  }
+      } 
+    
+    return changed;
+  }
+  
+  //helper function for get_cells_to_recalc
+  void dependency_graph::visit(std::string start, std::string name, std::set<std::string> visited, std::list<std::string> changed)
+  {
+    visited.insert(name);
+    std::set<std::string>::iterator it;
+    
+    for (int i = 0; i < get_dependents(name).size(); i++)
+      {
+	if (get_dependents(name).at(i) == start)
+	  {
+	    std::cout << "***CIRCULAR DEPENDENCY***" << std::endl; //placeholder for error message or other action
+	  }
 	
+	else if (visited.find(get_dependents(name).at(i)) != visited.end() == false)
+	  {
+	    visit(start, get_dependents(name).at(i), visited, changed);
+	  }
+      }
+    changed.push_front(name);
+  }
 
 }
