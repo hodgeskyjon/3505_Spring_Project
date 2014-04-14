@@ -36,6 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PS4\Formula.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetClientModel">
+      <HintPath>..\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.dll</HintPath>
+    </Reference>
     <Reference Include="SpreadsheetPanel">
       <HintPath>..\SpreadsheetPanel.dll</HintPath>
     </Reference>
@@ -61,10 +64,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewF.Designer.cs">
+      <DependentUpon>NewF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenF.Designer.cs">
+      <DependentUpon>OpenF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewF.resx">
+      <DependentUpon>NewF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenF.resx">
+      <DependentUpon>OpenF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -93,6 +115,9 @@
       <Project>{bbe0ca3a-3975-4ca9-b6b6-f8f7fd4af466}</Project>
       <Name>Spreadsheet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

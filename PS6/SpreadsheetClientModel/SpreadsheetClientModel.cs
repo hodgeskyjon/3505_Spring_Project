@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using CustomNetworking;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 namespace SS
 {
@@ -64,6 +65,7 @@ namespace SS
             {
                 IncomingLineEvent(s);
             }
+
             clientSSocket.BeginReceive(LineReceived, null);
         }
 

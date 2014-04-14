@@ -53,6 +53,7 @@
             this.cellNameLabel = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.UndoButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,9 +63,9 @@
             this.spreadsheetPanel1.AutoSize = true;
             this.spreadsheetPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.spreadsheetPanel1.Location = new System.Drawing.Point(0, 58);
-            this.spreadsheetPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.spreadsheetPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.spreadsheetPanel1.Name = "spreadsheetPanel1";
-            this.spreadsheetPanel1.Size = new System.Drawing.Size(586, 576);
+            this.spreadsheetPanel1.Size = new System.Drawing.Size(616, 576);
             this.spreadsheetPanel1.TabIndex = 0;
             this.spreadsheetPanel1.SelectionChanged += new SS.SelectionChangedHandler(this.spreadsheetPanel1_SelectionChanged);
             // 
@@ -77,7 +78,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(586, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(620, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,7 +102,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -179,6 +180,7 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.UndoButton);
             this.panel1.Controls.Add(this.EvaluateButton);
             this.panel1.Controls.Add(this.editCell);
             this.panel1.Controls.Add(this.cellContentsLabel);
@@ -187,15 +189,15 @@
             this.panel1.Controls.Add(this.selectedCell);
             this.panel1.Controls.Add(this.cellNameLabel);
             this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(586, 31);
+            this.panel1.Size = new System.Drawing.Size(616, 31);
             this.panel1.TabIndex = 2;
             // 
             // EvaluateButton
             // 
             this.EvaluateButton.Location = new System.Drawing.Point(505, 3);
-            this.EvaluateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EvaluateButton.Margin = new System.Windows.Forms.Padding(2);
             this.EvaluateButton.Name = "EvaluateButton";
             this.EvaluateButton.Size = new System.Drawing.Size(70, 19);
             this.EvaluateButton.TabIndex = 6;
@@ -206,7 +208,7 @@
             // editCell
             // 
             this.editCell.Location = new System.Drawing.Point(380, 5);
-            this.editCell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editCell.Margin = new System.Windows.Forms.Padding(2);
             this.editCell.Name = "editCell";
             this.editCell.Size = new System.Drawing.Size(122, 20);
             this.editCell.TabIndex = 5;
@@ -226,7 +228,7 @@
             // 
             this.selectedValue.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.selectedValue.Location = new System.Drawing.Point(192, 6);
-            this.selectedValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectedValue.Margin = new System.Windows.Forms.Padding(2);
             this.selectedValue.Name = "selectedValue";
             this.selectedValue.ReadOnly = true;
             this.selectedValue.Size = new System.Drawing.Size(80, 20);
@@ -245,7 +247,7 @@
             // 
             this.selectedCell.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.selectedCell.Location = new System.Drawing.Point(75, 6);
-            this.selectedCell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectedCell.Margin = new System.Windows.Forms.Padding(2);
             this.selectedCell.Name = "selectedCell";
             this.selectedCell.ReadOnly = true;
             this.selectedCell.Size = new System.Drawing.Size(43, 20);
@@ -272,16 +274,26 @@
             this.saveFileDialog1.Filter = "Spreadsheet files |*.ss|All Files|*.*";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // UndoButton
+            // 
+            this.UndoButton.Image = global::SpreadsheetGUI.Properties.Resources.undo;
+            this.UndoButton.Location = new System.Drawing.Point(580, 2);
+            this.UndoButton.Name = "UndoButton";
+            this.UndoButton.Size = new System.Drawing.Size(28, 26);
+            this.UndoButton.TabIndex = 7;
+            this.UndoButton.UseVisualStyleBackColor = true;
+            this.UndoButton.Click += new System.EventHandler(this.UndoButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 634);
+            this.ClientSize = new System.Drawing.Size(620, 634);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.spreadsheetPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
@@ -319,6 +331,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button EvaluateButton;
+        private System.Windows.Forms.Button UndoButton;
     }
 }
 

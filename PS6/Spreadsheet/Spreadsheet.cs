@@ -174,30 +174,61 @@ namespace SS
                 throw new ArgumentNullException();
             if (name == null || !isValidName(name))
                 throw new InvalidNameException();
+
+            object oldContents = formula;
+            bool isDouble = false;
+            bool isString = false;
+
             if (cells.ContainsKey(name))
             {
+                oldContents = cells[name].CellContents;
+                if (cells[name].CellContents is double)
+                    isDouble = true;
+                if (cells[name].CellContents is string)
+                    isString = true;
+
                 try
                 {
-                    if (!(cells[name].CellContents is double))
-                    {
+                    //if (!(cells[name].CellContents is double) && !(cells[name].CellContents is string))
+                    //{
                         Formula oldValue = (Formula)cells[name].CellContents;
                         foreach (string s in oldValue.GetVariables())
                         {
                             dependencyGraph.RemoveDependency(s, name);
                         }
-                    }
+                    //  }
+                    cells[name].CellContents = formula;
                 }
-                catch {}
+                catch {
+                    cells[name].CellContents = oldContents;
+                }
             }
-            cells.Remove(name);
-            cells.Add(name, new Cell(formula, lookup));
 
             foreach (string v in formula.GetVariables())
             {
                 dependencyGraph.AddDependency(v, name);
             }
 
-            HashSet<string> dependentCells = new HashSet<string>(GetCellsToRecalculate(name));
+            HashSet<string> dependentCells = new HashSet<string>();
+
+            try
+            {
+                dependentCells = new HashSet<string>(GetCellsToRecalculate(name));
+                cells.Remove(name);
+                cells.Add(name, new Cell(formula, lookup));
+            }
+            catch
+            {
+                cells.Remove(name);
+                if (isDouble)
+                    cells.Add(name, new Cell((double)oldContents));
+                else if (isString)
+                    cells.Add(name, new Cell((string)oldContents));
+                else
+                    cells.Add(name, new Cell((Formula)oldContents, lookup));
+                throw new CircularException();
+                //cells[name].CellContents = oldContents;
+            }
             foreach (string s in dependentCells)
             {
                 if (cells.ContainsKey(s))

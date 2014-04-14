@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpreadsheetUtilities;
 using System.Text.RegularExpressions;
+using SpreadsheetGUI;
+using System.Collections;
 
 namespace SS
 {
@@ -17,6 +19,11 @@ namespace SS
     {
         private Spreadsheet ss; //spreadsheet associated with the panel
         private string filename; //name of the file to open, if any
+        private SpreadsheetClientModel scm;
+        public List<string> fileList;
+        private int version;
+        static int x = 200;
+        static int y = 200;
 
         /// <summary>
         /// Constructs a new default Spreadsheet
@@ -25,6 +32,9 @@ namespace SS
         {
             InitializeComponent();
             ss = new Spreadsheet(isValidName, s => s.ToUpper(), "Spreadsheet");
+            scm = new SpreadsheetClientModel();
+            fileList = new List<string>();
+            version = 0;
             filename = null;
             this.Text = ss.Version;
             spreadsheetPanel1.SetSelection(0, 0);
@@ -32,8 +42,10 @@ namespace SS
             selectedValue.Text = "";
             editCell.Text = "";
 
+            scm.IncomingLineEvent += MessageReceived;
             UpdateCell();
         }
+
 
         /// <summary>
         /// Constructs a new Spreadsheet with the provided filepath
@@ -42,7 +54,11 @@ namespace SS
         public Form1(string filepath)
         {
             InitializeComponent();
-            ss = new Spreadsheet(filepath, isValidName, s => s.ToUpper(), "Spreadsheet");
+            //ss = new Spreadsheet(filepath, isValidName, s => s.ToUpper(), "Spreadsheet");
+            ss = new Spreadsheet(isValidName, s => s.ToUpper(), filepath);
+            scm = new SpreadsheetClientModel();
+            fileList = new List<string>();
+            version = 0;
             filename = filepath;
             this.Text = filename;
             spreadsheetPanel1.SetSelection(0, 0);
@@ -50,12 +66,26 @@ namespace SS
             selectedValue.Text = "";
             editCell.Text = "";
 
+            scm.IncomingLineEvent += MessageReceived;
             UpdateCell();
         }
 
 
 
         //Event Handlers
+
+        private void MessageReceived(string s)
+        {
+            string[] words = Regex.Split(s, "[esc]");
+
+            if (words[0].Contains("FILELIST"))
+            {
+                foreach (string file in words)
+                {
+                    fileList.Add(file);
+                }
+            }
+        }
 
         /// <summary>
         /// Opens a new form with a new spreadsheet panel
@@ -64,7 +94,34 @@ namespace SS
         /// <param name="e"></param>
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SpreadsheetApplicationContext.getAppContext().RunForm(new Form1());
+            NewF newForm = new NewF(this);
+            newForm.Visible = true;
+
+            newForm.SetDesktopLocation(x, y);
+            x += 30;
+            y += 30;
+           
+        }
+
+        public void newOpen(string filename)
+        {
+            if (fileList.Contains(filename))
+            {
+                MessageBox.Show("That filename already exist.\n" + "Please choose a different filename.", "Spreadsheet | Error", MessageBoxButtons.OK);
+
+                NewF newForm = new NewF(this);
+                newForm.Visible = true;
+
+                newForm.SetDesktopLocation(x, y);
+                x += 30;
+                y += 30;
+            }
+            else
+            {
+                scm.SendMessage("CREATE[esc]" + filename + "\n");
+                SpreadsheetApplicationContext.getAppContext().RunForm(new Form1(filename));
+            }
+            
         }
 
         /// <summary>
@@ -74,6 +131,7 @@ namespace SS
         /// <param name="e"></param>
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -93,6 +151,36 @@ namespace SS
                     MessageBox.Show(ex.Message, "Spreadsheet | Error", MessageBoxButtons.OK);
                 }
             }
+             */
+            OpenF openForm = new OpenF(this);
+            openForm.Visible = true;
+
+            openForm.SetDesktopLocation(x, y);
+            x += 30;
+            y += 30;
+
+            scm.SendMessage("OPEN[esc]spreadsheet_name\n");
+
+        }
+
+        public void Open(string filename)
+        {
+            scm.SendMessage("OPEN[esc]" + filename + "\n");
+            Form1 newForm = new Form1(filename);
+
+            try
+            {
+                SpreadsheetApplicationContext.getAppContext().RunForm(newForm);
+                foreach (string k in newForm.ss.GetNamesOfAllNonemptyCells())
+                {
+                    newForm.updateDependent(k);
+                } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Spreadsheet | Error", MessageBoxButtons.OK);
+            }
+
         }
    
         /// <summary>
@@ -105,15 +193,21 @@ namespace SS
         {
             if (ss.Changed)
             {
-                var result = MessageBox.Show("The spreadsheet has been changed and not saved. Are you sure you want to exit?", 
+                var result = MessageBox.Show("The spreadsheet has been changed and not saved. Are you sure you want to exit?",
                     "Spreadsheet | Exit", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                     return;
                 else
+                {
+                    scm.SendMessage("DISCONNECT\n");
                     Close();
+                }
             }
             else
+            {
+                scm.SendMessage("DISCONNECT\n");
                 Close();
+            }
         }
 
         /// <summary>
@@ -123,7 +217,8 @@ namespace SS
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
+            scm.SendMessage("SAVE[esc]" + version + "\n");
+            //saveFileDialog1.ShowDialog();
         }
 
         /// <summary>
@@ -188,8 +283,6 @@ namespace SS
         {
             GetHelp();
         }
-
-
 
 
         //Utility Methods
@@ -305,7 +398,7 @@ namespace SS
         /// </summary>
         private void ShowAbout()
         {
-            MessageBox.Show("Program created by \n Christy Bowen", "About", MessageBoxButtons.OK);
+            MessageBox.Show("Program created by \n Christy Bowen, Skyler Jones, James Sullivan, and Mike Miner", "About", MessageBoxButtons.OK);
         }
 
         /// <summary>
@@ -322,6 +415,7 @@ namespace SS
             helpText.Append("Once selected, a cell can be edited with the 'Edit Cell Contents' box. \n\n");
             helpText.Append("You can hit the 'Enter' key, or click the 'Evaluate' button to update. \n\n");
             helpText.Append("When entering a formula, it must start with '=' \n\n");
+            helpText.Append("When you click the Undo button it will revert to the last change on the server. \n\n");
             helpText.Append("Menu items work in the usual way");
             MessageBox.Show(helpText.ToString(), "Help", MessageBoxButtons.OK);
         }
@@ -335,5 +429,12 @@ namespace SS
         {
             return Regex.IsMatch(name, @"^[a-zA-Z]+(?: [a-zA-Z]|\d)*$");
         }
+
+        private void UndoButton_Click(object sender, EventArgs e)
+        {
+            version++;
+            scm.SendMessage("UNDO[esc]"+version+"\n");
+        }
+
     }
 }
