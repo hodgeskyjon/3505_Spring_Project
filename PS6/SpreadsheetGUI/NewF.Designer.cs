@@ -1,4 +1,4 @@
-﻿namespace SpreadsheetGUI
+﻿namespace SS
 {
     partial class NewF
     {

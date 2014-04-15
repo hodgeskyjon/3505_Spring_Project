@@ -27,10 +27,11 @@ C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\bin
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\bin\Debug\SpreadsheetPanel.xml
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\bin\Debug\StringSocket.pdb
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.csprojResolveAssemblyReference.cache
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SS.LoginWindow.resources
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SS.Form1.resources
-C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.NewF.resources
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SS.NewF.resources
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SS.OpenF.resources
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.Properties.Resources.resources
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.csproj.GenerateResource.Cache
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.exe
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.pdb
-C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.OpenF.resources

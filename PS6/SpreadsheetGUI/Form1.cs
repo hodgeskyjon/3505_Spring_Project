@@ -19,11 +19,12 @@ namespace SS
     {
         private Spreadsheet ss; //spreadsheet associated with the panel
         private string filename; //name of the file to open, if any
-        private SpreadsheetClientModel scm;
-        public List<string> fileList;
+        //private SpreadsheetClientModel scm;
+       // public List<string> fileList;
         private int version;
         static int x = 200;
         static int y = 200;
+        private SpreadsheetController ssController;
 
         /// <summary>
         /// Constructs a new default Spreadsheet
@@ -32,8 +33,8 @@ namespace SS
         {
             InitializeComponent();
             ss = new Spreadsheet(isValidName, s => s.ToUpper(), "Spreadsheet");
-            scm = new SpreadsheetClientModel();
-            fileList = new List<string>();
+            //scm = new SpreadsheetClientModel();
+            //fileList = new List<string>();
             version = 0;
             filename = null;
             this.Text = ss.Version;
@@ -42,7 +43,7 @@ namespace SS
             selectedValue.Text = "";
             editCell.Text = "";
 
-            scm.IncomingLineEvent += MessageReceived;
+            //scm.IncomingLineEvent += MessageReceived;
             UpdateCell();
         }
 
@@ -56,8 +57,7 @@ namespace SS
             InitializeComponent();
             //ss = new Spreadsheet(filepath, isValidName, s => s.ToUpper(), "Spreadsheet");
             ss = new Spreadsheet(isValidName, s => s.ToUpper(), filepath);
-            scm = new SpreadsheetClientModel();
-            fileList = new List<string>();
+            
             version = 0;
             filename = filepath;
             this.Text = filename;
@@ -66,26 +66,78 @@ namespace SS
             selectedValue.Text = "";
             editCell.Text = "";
 
-            scm.IncomingLineEvent += MessageReceived;
+           
+            UpdateCell();
+        }
+
+        public Form1(SpreadsheetClientModel scm)
+        {
+            
+            InitializeComponent();
+            ss = new Spreadsheet(isValidName, s => s.ToUpper(), "Spreadsheet");
+            scm = new SpreadsheetClientModel();
+            
+            version = 0;
+            filename = null;
+            this.Text = ss.Version;
+            spreadsheetPanel1.SetSelection(0, 0);
+            selectedCell.Text = "A1";
+            selectedValue.Text = "";
+            editCell.Text = "";
+            this.Visible = false;
+
+           // scm.IncomingLineEvent += MessageReceived;
+            UpdateCell();
+        }
+
+        public Form1(string filename, SpreadsheetController spreadsheetController)
+        {
+            // TODO: Complete member initialization
+            this.filename = filename;
+            this.ssController = spreadsheetController;
+            InitializeComponent();
+            //ss = new Spreadsheet(filepath, isValidName, s => s.ToUpper(), "Spreadsheet");
+            ss = new Spreadsheet(isValidName, s => s.ToUpper(), filename);
+
+            version = 0;
+            //filename = filepath;
+            this.Text = filename;
+            spreadsheetPanel1.SetSelection(0, 0);
+            selectedCell.Text = "A1";
+            selectedValue.Text = "";
+            editCell.Text = "";
+
             UpdateCell();
         }
 
 
 
         //Event Handlers
-
+/*
         private void MessageReceived(string s)
         {
             string[] words = Regex.Split(s, "[esc]");
 
             if (words[0].Contains("FILELIST"))
             {
+                this.Visible = true;
+
                 foreach (string file in words)
                 {
                     fileList.Add(file);
                 }
             }
+            if (words[0].Contains("INVALID"))
+            {
+                if (MessageBox.Show("Invalid Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                {
+                    new LoginWindow();
+                    Close();
+                }
+            }
         }
+ * */
+
 
         /// <summary>
         /// Opens a new form with a new spreadsheet panel
@@ -102,7 +154,7 @@ namespace SS
             y += 30;
            
         }
-
+        /*
         public void newOpen(string filename)
         {
             if (fileList.Contains(filename))
@@ -123,6 +175,7 @@ namespace SS
             }
             
         }
+         * */
 
         /// <summary>
         /// Opens a saved spreadsheet
@@ -159,15 +212,12 @@ namespace SS
             x += 30;
             y += 30;
 
-            scm.SendMessage("OPEN[esc]spreadsheet_name\n");
+            //scm.SendMessage("OPEN[esc]spreadsheet_name\n");
 
         }
 
-        public void Open(string filename)
+        public void Open(Form1 newForm)
         {
-            scm.SendMessage("OPEN[esc]" + filename + "\n");
-            Form1 newForm = new Form1(filename);
-
             try
             {
                 SpreadsheetApplicationContext.getAppContext().RunForm(newForm);
@@ -199,13 +249,13 @@ namespace SS
                     return;
                 else
                 {
-                    scm.SendMessage("DISCONNECT\n");
+                   // scm.SendMessage("DISCONNECT\n");
                     Close();
                 }
             }
             else
             {
-                scm.SendMessage("DISCONNECT\n");
+                //scm.SendMessage("DISCONNECT\n");
                 Close();
             }
         }
@@ -217,7 +267,7 @@ namespace SS
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            scm.SendMessage("SAVE[esc]" + version + "\n");
+           // scm.SendMessage("SAVE[esc]" + version + "\n");
             //saveFileDialog1.ShowDialog();
         }
 
@@ -433,7 +483,7 @@ namespace SS
         private void UndoButton_Click(object sender, EventArgs e)
         {
             version++;
-            scm.SendMessage("UNDO[esc]"+version+"\n");
+            //scm.SendMessage("UNDO[esc]"+version+"\n");
         }
 
     }

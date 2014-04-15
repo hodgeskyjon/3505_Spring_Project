@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpreadsheetUtilities;
+using System.Text.RegularExpressions;
+using SpreadsheetGUI;
+using System.Collections;
 
-namespace SpreadsheetGUI
+namespace SS
 {
     public partial class OpenF : Form
     {
         private SS.Form1 form1;
+        private SpreadsheetController spreadsheetController;
 
         public OpenF()
         {
@@ -23,23 +29,32 @@ namespace SpreadsheetGUI
         public OpenF(SS.Form1 form1)
         {
             InitializeComponent();
-            form1.fileList.Add("test1");
-            form1.fileList.Add("test2");
-            form1.fileList.Add("test3");
-            this.listOfSavedFiles.DataSource = form1.fileList;
+            //form1.fileList.Add("test1");
+            //form1.fileList.Add("test2");
+            //form1.fileList.Add("test3");
+            //this.listOfSavedFiles.DataSource = form1.fileList;
             this.form1 = form1;
+        }
+
+        public OpenF(SpreadsheetController spreadsheetController)
+        {
+            InitializeComponent();
+            this.spreadsheetController = spreadsheetController;
+            this.listOfSavedFiles.DataSource = spreadsheetController.fileList;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             int selectedIndex = this.listOfSavedFiles.SelectedIndex;
-            form1.Open(form1.fileList[selectedIndex]);
-            //MessageBox.Show(form1.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+           // form1.Open(form1.fileList[selectedIndex]);
+            spreadsheetController.OpenSC(spreadsheetController.fileList[selectedIndex]);
+            MessageBox.Show(spreadsheetController.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            new NewF();
         }
     }
 }

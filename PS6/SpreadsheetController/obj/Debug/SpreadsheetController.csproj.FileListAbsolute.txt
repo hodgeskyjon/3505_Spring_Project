@@ -1,0 +1,17 @@
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\obj\Debug\SpreadsheetController.csprojResolveAssemblyReference.cache
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetController.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetController.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetClientModel.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetGUI.exe
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\StringSocket.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\Spreadsheet.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetPanel.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\Formula.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetUtilities.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetClientModel.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetGUI.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\StringSocket.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\Spreadsheet.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\bin\Debug\SpreadsheetPanel.xml
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\obj\Debug\SpreadsheetController.dll
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetController\obj\Debug\SpreadsheetController.pdb

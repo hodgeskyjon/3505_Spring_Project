@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpreadsheetGUI;
 
 namespace SS
 {
@@ -66,7 +67,8 @@ namespace SS
 
             // Start an application context and run one form inside it
             SpreadsheetApplicationContext appContext = SpreadsheetApplicationContext.getAppContext();
-            appContext.RunForm(new Form1());
+            //appContext.RunForm(new Form1());
+            appContext.RunForm(new LoginWindow());
             Application.Run(appContext);
         }
     }

@@ -39,6 +39,9 @@
     <Reference Include="SpreadsheetClientModel">
       <HintPath>..\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetController">
+      <HintPath>..\SpreadsheetController\obj\Debug\SpreadsheetController.dll</HintPath>
+    </Reference>
     <Reference Include="SpreadsheetPanel">
       <HintPath>..\SpreadsheetPanel.dll</HintPath>
     </Reference>
@@ -58,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthenticationF.Designer.cs">
+      <DependentUpon>AuthenticationF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AuthenticationF.resx">
+      <DependentUpon>AuthenticationF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File-Spreadsheet-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

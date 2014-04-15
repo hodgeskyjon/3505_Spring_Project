@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpreadsheetUtilities;
+using System.Text.RegularExpressions;
+using SpreadsheetGUI;
+using System.Collections;
 
-namespace SpreadsheetGUI
+namespace SS
 {
     public partial class NewF : Form
     {
@@ -29,7 +34,7 @@ namespace SpreadsheetGUI
         private void button1_Click(object sender, EventArgs e)
         {
             filename = NewTextBox.Text;
-            form1.newOpen(filename);
+            //form1.newOpen(filename);
             Close();
         }
     }
