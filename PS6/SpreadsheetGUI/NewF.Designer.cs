@@ -49,6 +49,7 @@
             this.NewTextBox.Name = "NewTextBox";
             this.NewTextBox.Size = new System.Drawing.Size(207, 20);
             this.NewTextBox.TabIndex = 1;
+            this.NewTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NewTextBox_KeyPress);
             // 
             // NewOKButton
             // 

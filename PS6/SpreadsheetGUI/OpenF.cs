@@ -18,7 +18,7 @@ namespace SS
     public partial class OpenF : Form
     {
         private SS.Form1 form1;
-        private SpreadsheetController spreadsheetController;
+       // private SpreadsheetController spreadsheetController;
 
         public OpenF()
         {
@@ -29,32 +29,46 @@ namespace SS
         public OpenF(SS.Form1 form1)
         {
             InitializeComponent();
-            //form1.fileList.Add("test1");
-            //form1.fileList.Add("test2");
-            //form1.fileList.Add("test3");
-            //this.listOfSavedFiles.DataSource = form1.fileList;
+
+            //******testing********
+            form1.fileList.Add("test1");
+            form1.fileList.Add("test2");
+            form1.fileList.Add("test3");
+
+            this.listOfSavedFiles.DataSource = form1.fileList;
             this.form1 = form1;
+            this.Visible = true;
+  
         }
 
-        public OpenF(SpreadsheetController spreadsheetController)
+        //*****from spreadsheet controller*********
+        /*public OpenF(SpreadsheetController spreadsheetController)
         {
             InitializeComponent();
             this.spreadsheetController = spreadsheetController;
             this.listOfSavedFiles.DataSource = spreadsheetController.fileList;
         }
-
+        */
         private void button1_Click(object sender, EventArgs e)
         {
             int selectedIndex = this.listOfSavedFiles.SelectedIndex;
-           // form1.Open(form1.fileList[selectedIndex]);
-            spreadsheetController.OpenSC(spreadsheetController.fileList[selectedIndex]);
-            MessageBox.Show(spreadsheetController.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+
+            if (form1.fileList != null)
+            {          
+                form1.Open(form1.fileList[selectedIndex]);
+
+                //*********from spreadsheet controller**********
+                //spreadsheetController.OpenSC(spreadsheetController.fileList[selectedIndex]);
+                //MessageBox.Show(spreadsheetController.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+            }
+            Close();
             
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new NewF();
+            new NewF(form1);
+            Close();
         }
     }
 }

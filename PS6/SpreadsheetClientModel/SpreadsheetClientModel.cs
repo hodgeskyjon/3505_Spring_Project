@@ -13,7 +13,7 @@ namespace SS
     {
         private String password;
         private StringSocket clientSSocket;
-
+        public List<string> fileList;
         public event Action<String> IncomingLineEvent;
 
         public SpreadsheetClientModel()
@@ -72,6 +72,7 @@ namespace SS
         public void Close()
         {
             clientSSocket.Close();
+
         }
 
     }

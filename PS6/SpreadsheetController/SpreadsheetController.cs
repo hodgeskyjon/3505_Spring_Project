@@ -8,7 +8,7 @@ namespace SS
 {
     public class SpreadsheetController
     {
-        private SpreadsheetClientModel scm;
+  /*      private SpreadsheetClientModel scm;
         public List<string> fileList;
         private Form1 form1;
         private LoginWindow logWin;
@@ -48,6 +48,7 @@ namespace SS
 
             newForm.Open(newForm);
         }
+ * */
     }
 
 }

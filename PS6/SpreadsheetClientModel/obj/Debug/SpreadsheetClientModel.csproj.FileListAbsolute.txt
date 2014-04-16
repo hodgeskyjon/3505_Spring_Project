@@ -9,6 +9,6 @@ C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientM
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.pdb
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\bin\Debug\StringSocket.dll
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\bin\Debug\StringSocket.pdb
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.csprojResolveAssemblyReference.cache
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.dll
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.pdb
-C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\SpreadsheetClientModel\obj\Debug\SpreadsheetClientModel.csprojResolveAssemblyReference.cache

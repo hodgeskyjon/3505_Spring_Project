@@ -29,13 +29,24 @@ namespace SS
         {
             InitializeComponent();
             this.form1 = form1;
+            this.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             filename = NewTextBox.Text;
-            //form1.newOpen(filename);
+            form1.newOpen(filename);
             Close();
+        }
+
+        private void NewTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                filename = NewTextBox.Text;
+                form1.newOpen(filename);
+                Close();
+            }
         }
     }
 }

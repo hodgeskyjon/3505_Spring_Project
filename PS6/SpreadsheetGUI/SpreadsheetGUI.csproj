@@ -39,9 +39,6 @@
     <Reference Include="SpreadsheetClientModel">
       <HintPath>..\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.dll</HintPath>
     </Reference>
-    <Reference Include="SpreadsheetController">
-      <HintPath>..\SpreadsheetController\obj\Debug\SpreadsheetController.dll</HintPath>
-    </Reference>
     <Reference Include="SpreadsheetPanel">
       <HintPath>..\SpreadsheetPanel.dll</HintPath>
     </Reference>

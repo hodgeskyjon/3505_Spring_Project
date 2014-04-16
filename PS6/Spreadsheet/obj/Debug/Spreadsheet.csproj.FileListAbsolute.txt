@@ -13,6 +13,6 @@ C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\bin\De
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\bin\Debug\SpreadsheetUtilities.dll
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\bin\Debug\Formula.xml
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\bin\Debug\SpreadsheetUtilities.xml
+C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\obj\Debug\Spreadsheet.csprojResolveAssemblyReference.cache
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\obj\Debug\Spreadsheet.dll
 C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\obj\Debug\Spreadsheet.pdb
-C:\Users\hodgeskyjon\Documents\GitHub\3505_Spring_Project\PS6\Spreadsheet\obj\Debug\Spreadsheet.csprojResolveAssemblyReference.cache
