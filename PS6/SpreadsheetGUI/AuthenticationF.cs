@@ -46,15 +46,5 @@ namespace SS
            MessageBox.Show("Invalid Password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error); 
         }
 
-        private void PasswordTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            int port = 0;
-            int.TryParse(portTextBox.Text, out port);
-
-            //scm.Connect(UsernameTextBox.Text, port, PasswordTextBox.Text);
-            form1 = new Form1(this);
-            form1.SSconnect(UsernameTextBox.Text, port, PasswordTextBox.Text);
-        }
-
     }
 }

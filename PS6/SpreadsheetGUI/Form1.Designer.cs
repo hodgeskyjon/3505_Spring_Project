@@ -271,9 +271,7 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "Spreadsheet files |*.ss|All Files|*.*";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
+            this.saveFileDialog1.Filter = "Spreadsheet files |*.ss|All Files|*.*";            // 
             // UndoButton
             // 
             this.UndoButton.Image = global::SpreadsheetGUI.Properties.Resources.undo;

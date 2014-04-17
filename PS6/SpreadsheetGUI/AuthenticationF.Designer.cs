@@ -73,7 +73,6 @@
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(138, 20);
             this.PasswordTextBox.TabIndex = 3;
-            this.PasswordTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordTextBox_KeyPress);
             // 
             // pictureBox1
             // 

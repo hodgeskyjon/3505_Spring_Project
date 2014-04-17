@@ -141,22 +141,25 @@ namespace SS
         /// </summary>
         private void MessageReceived(string s)
         {
-            string[] words = s.Split((char)27);
-
-            if (words[0].Contains("FILELIST"))
+            if (s != null)
             {
-                new OpenF(this);
+                string[] words = s.Split((char)27);
 
-                foreach (string file in words)
+                if (words[0].Contains("FILELIST"))
                 {
-                    fileList.Add(file);
-                }
-            }
-            else if (words[0].Contains("INVALID"))
-            {
-                logWin.LoginFailed();
-                
+                    new OpenF(this);
 
+                    foreach (string file in words)
+                    {
+                        fileList.Add(file);
+                    }
+                }
+                else if (words[0].Contains("INVALID"))
+                {
+                    logWin.LoginFailed();
+
+
+                }
             }
         }
 
@@ -170,6 +173,8 @@ namespace SS
             password = passW;
 
             scm.Connect(userN, p, passW);
+
+            System.Diagnostics.Debug.Write("SSconnect called");
         }
 
         /// <summary>
