@@ -18,6 +18,7 @@ namespace SS
     public partial class OpenF : Form
     {
         private SS.Form1 form1;
+        private bool first;
        // private SpreadsheetController spreadsheetController;
 
         public OpenF()
@@ -26,14 +27,15 @@ namespace SS
             this.listOfSavedFiles.DataSource = null;
         }
 
-        public OpenF(SS.Form1 form1)
+        public OpenF(SS.Form1 form1, bool f)
         {
             InitializeComponent();
+            first = f;
 
             //******testing********
-            form1.fileList.Add("test1");
-            form1.fileList.Add("test2");
-            form1.fileList.Add("test3");
+           // form1.fileList.Add("test1");
+            //form1.fileList.Add("test2");
+            //form1.fileList.Add("test3");
 
             this.listOfSavedFiles.DataSource = form1.fileList;
             this.form1 = form1;
@@ -53,13 +55,21 @@ namespace SS
         {
             int selectedIndex = this.listOfSavedFiles.SelectedIndex;
 
-            if (form1.fileList != null)
-            {          
-                form1.Open(form1.fileList[selectedIndex]);
+            if (first == true)
+            {
+                form1.FirstOpen(form1.fileList[selectedIndex]);
+            }
 
-                //*********from spreadsheet controller**********
-                //spreadsheetController.OpenSC(spreadsheetController.fileList[selectedIndex]);
-                //MessageBox.Show(spreadsheetController.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+            else
+            {
+                if (form1.fileList != null)
+                {
+                    form1.Open(form1.fileList[selectedIndex]);
+
+                    //*********from spreadsheet controller**********
+                    //spreadsheetController.OpenSC(spreadsheetController.fileList[selectedIndex]);
+                    //MessageBox.Show(spreadsheetController.fileList[selectedIndex], "File Selected", MessageBoxButtons.OK);
+                }
             }
             Close();
             

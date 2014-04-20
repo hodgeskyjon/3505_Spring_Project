@@ -23,6 +23,7 @@ namespace SS
         public List<string> fileList;
         private LoginWindow logWin;
         private int version;
+        private bool first;
         public string username;
         public int port;
         public string password;
@@ -63,10 +64,16 @@ namespace SS
             //ss = new Spreadsheet(filepath, isValidName, s => s.ToUpper(), "Spreadsheet");
             ss = new Spreadsheet(isValidName, s => s.ToUpper(), filepath);
             fileList = new List<string>();
+            first = false;
 
             //Will this be bad??
             scm = new SpreadsheetClientModel();
             scm.Connect(user, p, pass);
+            scm.SendMessage("CREATE" + "\\e" + filepath + "\n");
+
+            username = user;
+            port = p;
+            password = pass;
 
             version = 0;
             filename = filepath;
@@ -78,6 +85,10 @@ namespace SS
 
             scm.IncomingLineEvent += MessageReceived;
             UpdateCell();
+
+            //testing success
+            //new OpenF(this, first);
+
         }
 /*
         public Form1(SpreadsheetClientModel scm)
@@ -104,14 +115,17 @@ namespace SS
         /// The initial constructor that the AuthenicationF uses.
         /// </summary>
         /// <param name="loginWindow"></param>
-        public Form1(LoginWindow loginWindow)
+        public Form1(LoginWindow loginWindow, string user, int p, string pass)
         {
-            this.loginWindow = loginWindow;
+            logWin = loginWindow;
             InitializeComponent();
             ss = new Spreadsheet(isValidName, s => s.ToUpper(), "Spreadsheet");
             scm = new SpreadsheetClientModel();
             fileList = new List<string>();
-            version = 0;
+            username = user;
+            port = p;
+            password = pass;
+            first = true;
             filename = null;
             this.Text = ss.Version;
             spreadsheetPanel1.SetSelection(0, 0);
@@ -124,7 +138,7 @@ namespace SS
             UpdateCell();
 
             //testing success
-            //new OpenF(this);
+            //new OpenF(this, first);
         }
 
 
@@ -147,7 +161,7 @@ namespace SS
 
                 if (words[0].Contains("FILELIST"))
                 {
-                    new OpenF(this);
+                    new OpenF(this, first);
 
                     foreach (string file in words)
                     {
@@ -158,7 +172,79 @@ namespace SS
                 {
                     logWin.LoginFailed();
 
+                }
+                else if (words[0].Contains("UPDATE"))
+                {
+                    // File Creation Request
+                    //UPDATE[esc]current_version\n
 
+                    int serverVersion = 0;
+                    int.TryParse(words[1], out serverVersion);
+
+                    if (serverVersion != version)
+                    {
+                        Resync();
+                    }
+                    else if (words.Length > 2)
+                    {
+ 
+                    // File Open Request
+                    //UPDATE[esc]current_version[esc]cell_name1[esc]cell_content1[esc]cell_name2[esc]…\n 
+
+                    // Edit Request
+                    //UPDATE[esc]current_version[esc]cell_name[esc]cell_content\n 
+
+                    // Undo Request
+                    //UPDATE[esc] current_version[esc]cell_name[esc]cell_content\n
+
+                        int.TryParse(words[1], out version);
+
+                        int i = 2;
+                        while (i < words.Length)
+                        {
+                            ss.SetContentsOfCell(words[i], words[i++]);
+                            UpdateCellFromServer(words[i - 1]);
+                            i++;
+                        }
+                    }
+                    version++;
+                }
+                else if (words[0].Contains("SAVED"))
+                {
+                    //Save Request
+                    MessageBox.Show("The Spreadsheet has been saved.", "Spreadsheet | Success", MessageBoxButtons.OK);
+                }
+                else if (words[0].Contains("SYNC"))
+                {
+                    // Spreadsheet out of sync detected
+                    //SYNC[esc] current_version[esc]cell_name[esc]cell_content…\n
+
+                    int.TryParse(words[1], out version);
+
+                    int i = 2;
+                    while (i < words.Length)
+                    {
+                        ss.SetContentsOfCell(words[i], words[i++]);
+                        UpdateCellFromServer(words[i - 1]);
+                        i++;
+                    }
+                }
+                else if (words[0].Contains("ERROR"))
+                {
+                    // All Other Errors
+                    //ERROR[esc]error_message\n
+                    MessageBox.Show(words[1], "Spreadsheet | Error", MessageBoxButtons.OK);
+
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("The Server has disconnected." , "Spreadsheet | Error", MessageBoxButtons.OK);
+                    if (result == DialogResult.OK)
+                    {
+                        scm.Close();
+                        Close();
+                    }
+                    
                 }
             }
         }
@@ -174,7 +260,15 @@ namespace SS
 
             scm.Connect(userN, p, passW);
 
-            System.Diagnostics.Debug.Write("SSconnect called");
+        }
+
+        /// <summary>
+        /// If the client is out of sync with the server, then it will send a request to 
+        /// resync with the server.
+        /// </summary>
+        private void Resync()
+        {
+            scm.SendMessage("RESYNC\n");
         }
 
         /// <summary>
@@ -199,18 +293,20 @@ namespace SS
             {
                 if (fileList.Contains(filename))
                 {
-                    MessageBox.Show("That filename already exist.\n" + "Please choose a different filename.", "Spreadsheet | Error", MessageBoxButtons.OK);
+                    DialogResult result = MessageBox.Show("That filename already exist.\n" + "Please choose a different filename.", "Spreadsheet | Error", MessageBoxButtons.OK);
+                    if (result == DialogResult.OK)
+                    {
+                        NewF newForm = new NewF(this);
+                        newForm.Visible = true;
 
-                    NewF newForm = new NewF(this);
-                    newForm.Visible = true;
-
-                    newForm.SetDesktopLocation(x, y);
-                    x += 30;
-                    y += 30;
+                        newForm.SetDesktopLocation(x, y);
+                        x += 30;
+                        y += 30;
+                    }
                 }
                 else
                 {
-                    scm.SendMessage("CREATE" + (char)27 + filename + "\n");
+                    //scm.SendMessage("CREATE" + "\\e" + filename + "\\e\\e\\e\n");
                     SpreadsheetApplicationContext.getAppContext().RunForm(new Form1(filename, username, port, password));
 
                 }
@@ -248,7 +344,7 @@ namespace SS
             }
             * */
              
-            OpenF openForm = new OpenF(this);
+            OpenF openForm = new OpenF(this, first);
 
             openForm.SetDesktopLocation(x, y);
             x += 30;
@@ -258,9 +354,9 @@ namespace SS
 
         public void Open(String filename)
         {
-            scm.SendMessage("OPEN" + (char)27 + filename + "\n");
+            scm.Connect(filename, port, password);
 
-            //???????Reconnect?????
+            scm.SendMessage("OPEN" + "\\e" + filename + "\n");
 
             //Form1 newForm = new Form1(filename);
             this.Visible = true;
@@ -273,6 +369,31 @@ namespace SS
                 {
                     this.updateDependent(k);
                 } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Spreadsheet | Error", MessageBoxButtons.OK);
+            }
+
+        }
+
+        public void FirstOpen(String filename)
+        {
+            scm.SendMessage("OPEN" + "\\e" + filename + "\n");
+
+            //scm.Connect(username, port, password);
+
+            //Form1 newForm = new Form1(filename);
+            this.Visible = true;
+            this.Text = filename;
+
+            try
+            {
+                SpreadsheetApplicationContext.getAppContext().RunForm(this);
+                foreach (string k in this.ss.GetNamesOfAllNonemptyCells())
+                {
+                    this.updateDependent(k);
+                }
             }
             catch (Exception ex)
             {
@@ -297,13 +418,15 @@ namespace SS
                     return;
                 else
                 {
-                   scm.SendMessage("DISCONNECT\n");
+                    scm.SendMessage("DISCONNECT\n");
+                    scm.Close();
                     Close();
                 }
             }
             else
             {
                 scm.SendMessage("DISCONNECT\n");
+                scm.Close();
                 Close();
             }
         }
@@ -315,7 +438,7 @@ namespace SS
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            scm.SendMessage("SAVE" + (char)27 + version + "\n");
+            scm.SendMessage("SAVE" + "\\e" + version + "\n");
            //saveFileDialog1.ShowDialog();
         }
 /*
@@ -420,6 +543,34 @@ namespace SS
         }
 
         /// <summary>
+        /// Updates the currently selected cell
+        /// </summary>
+        private void UpdateCellFromServer(string name)
+        {
+            object cellValue = ss.GetCellValue(name);
+            object cellContents = ss.GetCellContents(name);
+
+            if (cellValue is FormulaError)
+            {
+                FormulaError formula = (FormulaError)cellValue;
+                MessageBox.Show(formula.Reason);
+            }
+            else
+                selectedValue.Text = cellValue.ToString();
+
+            if (cellContents is Formula)
+            {
+                editCell.Text = "=" + cellContents.ToString();
+                editCell.SelectAll();
+            }
+            else
+            {
+                editCell.Text = cellContents.ToString();
+                editCell.SelectAll();
+            }
+        }
+
+        /// <summary>
         /// Gets the name of the currently selected cell
         /// </summary>
         /// <returns>Cell name</returns>
@@ -443,6 +594,10 @@ namespace SS
             try
             {
                 dependents = ss.SetContentsOfCell(name, editCell.Text);
+                
+                // Send message to the server about the change. 
+                scm.SendMessage("ENTER" + "\\e" + version + "\\e" + name + "\\e" + ss.GetCellContents(name) + "\n");
+                version++;
             }
             catch (Exception ex)
             {
@@ -455,6 +610,7 @@ namespace SS
             if(!(ss.GetCellValue(name) is FormulaError))
                 foreach(string d in dependents)
                     updateDependent(d);
+
         }
 
         /// <summary>
@@ -530,8 +686,8 @@ namespace SS
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-            //version++;
-            scm.SendMessage("UNDO"+(char)27+version+"\n");
+            version++;
+            scm.SendMessage("UNDO" + "\\e" + version + "\n");
         }
 
     }

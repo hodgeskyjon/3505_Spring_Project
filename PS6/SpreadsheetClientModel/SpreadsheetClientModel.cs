@@ -27,10 +27,17 @@ namespace SS
             if (clientSSocket == null)
             {
                 password = clientPassword;
-                TcpClient client = new TcpClient(hostname, port);
-                clientSSocket = new StringSocket(client.Client, UTF8Encoding.Default);
-                clientSSocket.BeginSend("PASSWORD" + (char)27 + password + "\n", (ex, p) => { }, null);
-                clientSSocket.BeginReceive(LineReceived, null);
+                try
+                {
+                    TcpClient client = new TcpClient(hostname, port);
+                    clientSSocket = new StringSocket(client.Client, UTF8Encoding.Default);
+                    clientSSocket.BeginSend("PASSWORD" + "\\e" + password + "\n", (ex, p) => { }, null);
+                    clientSSocket.BeginReceive(LineReceived, null);
+                }
+                catch (SocketException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             // not sure if this part is necessary?
             else
@@ -38,7 +45,7 @@ namespace SS
                 //clientSSocket.Close(); we don't want to close the socket unless the client is disconnecting
                 TcpClient client = new TcpClient(hostname, port);
                 clientSSocket = new StringSocket(client.Client, UTF8Encoding.Default);
-                clientSSocket.BeginSend("PASSWORD"+(char)27 + password + "\n", (ex, p) => { }, null);
+                clientSSocket.BeginSend("PASSWORD"+ "\\e" + password + "\n", (ex, p) => { }, null);
                 clientSSocket.BeginReceive(LineReceived, null);
             }
         }

@@ -65,6 +65,7 @@
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(140, 20);
             this.UsernameTextBox.TabIndex = 2;
+            this.UsernameTextBox.Text = "lab1-3.eng.utah.edu";
             // 
             // PasswordTextBox
             // 
@@ -72,7 +73,9 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(138, 20);
-            this.PasswordTextBox.TabIndex = 3;
+            this.PasswordTextBox.TabIndex = 4;
+            this.PasswordTextBox.Text = "awesome";
+            this.PasswordTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordTextBox_KeyPress);
             // 
             // pictureBox1
             // 
@@ -108,8 +111,8 @@
             this.portTextBox.Location = new System.Drawing.Point(78, 212);
             this.portTextBox.Name = "portTextBox";
             this.portTextBox.Size = new System.Drawing.Size(140, 20);
-            this.portTextBox.TabIndex = 7;
-            this.portTextBox.Text = "2500";
+            this.portTextBox.TabIndex = 3;
+            this.portTextBox.Text = "5555";
             // 
             // LoginWindow
             // 

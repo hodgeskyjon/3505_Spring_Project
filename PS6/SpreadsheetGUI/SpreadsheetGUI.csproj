@@ -36,9 +36,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PS4\Formula.dll</HintPath>
     </Reference>
-    <Reference Include="SpreadsheetClientModel">
-      <HintPath>..\SpreadsheetClientModel\bin\Debug\SpreadsheetClientModel.dll</HintPath>
-    </Reference>
     <Reference Include="SpreadsheetPanel">
       <HintPath>..\SpreadsheetPanel.dll</HintPath>
     </Reference>
@@ -120,6 +117,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SpreadsheetClientModel\SpreadsheetClientModel.csproj">
+      <Project>{947e3770-9b8a-4026-a324-0ab72ada4b3f}</Project>
+      <Name>SpreadsheetClientModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Spreadsheet\Spreadsheet.csproj">
       <Project>{bbe0ca3a-3975-4ca9-b6b6-f8f7fd4af466}</Project>
       <Name>Spreadsheet</Name>
